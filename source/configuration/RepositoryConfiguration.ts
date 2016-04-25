@@ -1,12 +1,10 @@
-/// <reference path="../childprocess/Action.ts" />
+import * as ChildProcess from "../childprocess/Exports";
 
-module Print {
-	export class RepositoryConfiguration {
-		name: string;
-		secondary: string;
-		secondaryUpstream: string;
-		actions: Childprocess.Action[] = []
-		constructor() {
-		}
+export class RepositoryConfiguration {
+	name: string;
+	secondary: string;
+	secondaryUpstream: string;
+	actions: ChildProcess.Action[] = []
+	constructor() {
 	}
 }

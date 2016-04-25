@@ -1,14 +1,10 @@
-/// <reference path="../../../typings/node/node" />
+import * as https from "https";
 
-var https = require("https");
-
-module Print.Github.Api {
-	export abstract class Url {
-		organization_repositories_url: string;
-		static queryApiUrl() {
-			// TODO
-		}
-	}
+export abstract class Url {
+    organization_repositories_url: string;
+    static queryApiUrl() {
+      // TODO
+    }
 }
 
 /*
