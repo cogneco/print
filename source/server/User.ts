@@ -1,16 +1,15 @@
-/// <reference path="../github/User" />
+import * as Github from "../github/Exports";
 
-module Print.Server {
-	export class User {
-		private username: string
-		constructor(user: Github.User) {
-			this.username = user.login;
-		}
-		getUsername(): string { return this.username; }
-		toJSON(): string {
-			return JSON.stringify({
-				"username": this.username
-			});
-		}
+export class User {
+	private username: string
+	constructor(user: Github.User) {
+		this.username = user.login;
+	}
+	getUsername(): string { return this.username; }
+	toJSON(): string {
+		return JSON.stringify({
+			"username": this.username
+		});
 	}
 }
+

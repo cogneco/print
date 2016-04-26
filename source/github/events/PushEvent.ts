@@ -1,10 +1,7 @@
-/// <reference path="../Commit" />
-/// <reference path="../Repository" />
+import * as Github from "../Exports";
 
-module Print.Github.Events {
-	export class PushEvent  {
-		compare: string;
-		head_commit: Commit;
-		repository: Repository;
-	}
+export class PushEvent  {
+	compare: string;
+	head_commit: Github.Commit;
+	repository: Github.Repository;
 }

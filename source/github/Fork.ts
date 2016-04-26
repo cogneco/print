@@ -1,12 +1,10 @@
-/// <reference path="User" />
-/// <reference path="Repository" />
+import { User } from "./User";
+import { Repository } from "./Repository"
 
-module Print.Github {
-	export class Fork {
-		label: string;
-		ref: string;
-		sha: string;
-		user: User;
-		repo: Repository;
-	}
+export class Fork {
+	label: string;
+	ref: string;
+	sha: string;
+	user: User;
+	repo: Repository;
 }
