@@ -1,7 +1,5 @@
-/// <reference path="../typings/node/node" />
-/// <reference path="server/LocalServer" />
-
-var fs = require("fs");
+import * as Server from "./server/Exports";
+import * as fs from "fs";
 
 var originalConsole = console["log"];
 console["log"] = function() {
@@ -37,7 +35,7 @@ module Print {
 			}
 		}
 	}
-	
+
 }
 var path =  process.env['HOME'] + "/repositories";
 var program = new Print.Program(path);

@@ -1,4 +1,8 @@
 #!/bin/bash
+if [ ! -d "typings" ]
+then
+    typings install
+fi
 git submodule init
 git submodule update
 tsc -p print-client --outFile print-client/build/client.js
