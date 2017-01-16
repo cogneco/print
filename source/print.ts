@@ -45,4 +45,4 @@ module Print {
 	
 }
 //var path =  process.env['HOME'] + "/repositories";
-var program = new Print.Program(path);
+var program = new Print.Program();
