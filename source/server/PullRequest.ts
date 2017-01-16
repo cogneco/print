@@ -37,7 +37,7 @@ module Print.Server {
 		private allJobsComplete: string;
         	private labels: Label[] = [];
 		private files: string[] = [];
-		constructor(request: Github.PullRequest, private token: string, path: string, jobQueueHandler: Childprocess.JobQueueHandler, parentQueue: PullRequestQueue, statusTargetUrl: string, private branches: any) {
+		constructor(request: Github.PullRequest, private token: string, path: string, jobQueueHandler: Childprocess.JobQueueHandler, parentQueue: PullRequestQueue, statusTargetUrl: string, private branches: any, private instructionsPath: strinf) {
 			this.jobQueueHandler = jobQueueHandler;
 			this.parentQueue = parentQueue;
 			this.readPullRequestData(request);
@@ -49,7 +49,7 @@ module Print.Server {
 			this.statusTargetUrl = statusTargetUrl + "/" + this.repositoryName + "/pr/" + this.id;
 			this.setNewEtag();
 			parentQueue.setNewEtag();
-			this.taskmaster = new Print.Childprocess.Taskmaster(path, token, this.branches, this.number, user, this.repositoryName, organization, upstreamBranch, branch, jobQueueHandler, this.updateExecutionResults.bind(this));
+			this.taskmaster = new Print.Childprocess.Taskmaster(path, token, this.branches, this.number, user, this.repositoryName, this.instructionsPath, organization, upstreamBranch, branch, jobQueueHandler, this.updateExecutionResults.bind(this));
 
 			//this.processPullRequest();
 		}

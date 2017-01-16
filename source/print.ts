@@ -16,9 +16,12 @@ module Print {
 	export class Program {
 		private server: Server.LocalServer
 		constructor(buildFolder: string) {
+			var configPath = "";
+			if (process.argv[2])
+				configPath= process.argv[2];
 			this.registerKeyEvents();
 			this.createBuildFolder(buildFolder);
-			this.server = new Server.LocalServer(buildFolder);
+			this.server = new Server.LocalServer(buildFolder, configPath);
 			this.server.start();
 		}
 		registerKeyEvents() {

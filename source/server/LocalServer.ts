@@ -23,13 +23,14 @@ module Print.Server {
 		private branches: any = {};
 		private jobQueueHandler: Childprocess.JobQueueHandler;
 		private serverConfig: ServerConfiguration;
-		constructor(buildFolder: string) {
-			this.serverConfig = ServerConfiguration.getServerConfig();
+		constructor(buildFolder: string, configPath: string) {
+			var configFile = configPath + 'config.json';
+			this.serverConfig = ServerConfiguration.getServerConfig(configFile);
 			this.jobQueueHandler = new Childprocess.JobQueueHandler();
 			this.baseUrl = this.serverConfig.getBaseUrl() + ":" + this.serverConfig.getServerPort().toString();
 			this.branches = this.serverConfig.getBranches();
-			ServerConfiguration.getServerConfig().getRepos().forEach(repo => {
-				this.pullRequestQueues.push(new PullRequestQueue(buildFolder, repo.name, repo.organization,
+			ServerConfiguration.getServerConfig(configFile).getRepos().forEach(repo => {
+				this.pullRequestQueues.push(new PullRequestQueue(buildFolder, configPath, repo.name, repo.organization,
 					repo.secret, this.jobQueueHandler, this.baseUrl + "/" + this.clientRoot, this.branches) );
 			});
 			console.log("Finished fetching pullrequest information");

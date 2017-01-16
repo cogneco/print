@@ -26,11 +26,11 @@ module Print {
 			}
 		}
 
-		static getServerConfig(): ServerConfiguration {
+		static getServerConfig(configFile: string): ServerConfiguration {
 			if (!ServerConfiguration.serverConfiguration) {
 				try {
 					ServerConfiguration.serverConfiguration = new ServerConfiguration();
-					ServerConfiguration.serverConfiguration.config = JSON.parse(fs.readFileSync("config.json", "utf-8"));
+					ServerConfiguration.serverConfiguration.config = JSON.parse(fs.readFileSync(configFile, "utf-8"));
 				}
 				catch (Error) {
 					console.log("There was an error while reading the configuration file, unable to continue.\n" + Error.toString());

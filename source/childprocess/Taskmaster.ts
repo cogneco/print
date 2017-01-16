@@ -23,7 +23,7 @@ module Print.Childprocess {
 		private jobQueueHandler: JobQueueHandler;
 		private jobQueuesCreated: number;
 		private noTest: bool = false;
-		constructor(path: string, private token: string, private branches: any, pullRequestNumber: number, user: string, private name: string, private organization: string, private upstreamBranch: string, branch: string, jobQueueHandler: JobQueueHandler, updateExecutionResults: (executionResults: ExecutionResult[]) => void) {
+		constructor(path: string, private token: string, private branches: any, pullRequestNumber: number, user: string, private name: string, private instructionsPath, private organization: string, private upstreamBranch: string, branch: string, jobQueueHandler: JobQueueHandler, updateExecutionResults: (executionResults: ExecutionResult[]) => void) {
 			this.pullRequestNumber = pullRequestNumber;
 			this.folderPath = path + "/" + pullRequestNumber;
 			this.user = user;
@@ -34,12 +34,12 @@ module Print.Childprocess {
 			this.jobQueue = new JobQueue(this.name + " " + this.pullRequestNumber.toString(), this.jobQueuesCreated, updateExecutionResults);
 			this.jobQueueHandler = jobQueueHandler;
 		}
-        getJobQueue() { return this.jobQueue; }
+        	getJobQueue() { return this.jobQueue; }
 		getNrOfJobQueuesCreated() { return this.jobQueuesCreated; }
                 getNoTest(): bool {return this.noTest };
                 setNoTest(noTest: bool) {this.noTest = noTest; }
 		readRepositoryConfiguration(repositoryName: string): RepositoryConfiguration {
-			var json = fs.readFileSync(repositoryName + ".json", "utf-8");
+			var json = fs.readFileSync(this.instructionsPath + repositoryName + ".json", "utf-8");
 			var repositoryConfiguration: RepositoryConfiguration = JSON.parse(json);
 			return repositoryConfiguration;
 		}

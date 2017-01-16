@@ -15,7 +15,7 @@ module Print.Server {
 		private etag: string = "";
 		private requests: PullRequest[] = [];
 		private members: Github.User[];
-		constructor(path: string, private name: string, private organization: string, private secret: string, private jobQueueHandler: Childprocess.JobQueueHandler, statusTargetUrl: string, private branches: any) {
+		constructor(path: string,private instructionsPath, private name: string, private organization: string, private secret: string, private jobQueueHandler: Childprocess.JobQueueHandler, statusTargetUrl: string, private branches: any) {
 			var serverConfig = ServerConfiguration.getServerConfig();
 			this.path = path + "/" + this.name;
 			this.createQueueFolder(this.path);
@@ -38,7 +38,7 @@ module Print.Server {
 			var pullrequests = <Github.PullRequest[]>JSON.parse(resbuffer.body);
 			pullrequests.forEach(request => {
 				if (this.verifyTeamMember(request.user.login)) {
-					var pr = new PullRequest(request, serverConfig.getAuthorizationToken(), this.path, this.jobQueueHandler, this, statusTargetUrl, this.branches);
+					var pr = new PullRequest(request, serverConfig.getAuthorizationToken(), this.path, this.jobQueueHandler, this, statusTargetUrl, this.branches, instructionsPath);
 					
 					var  fileBuffer = syncRequest("GET", "https://api.github.com" + "/repos/" + organization + "/" + name + "/pulls/" + request.number.toString() + "/files", options);
 					var files: string[] = [];
