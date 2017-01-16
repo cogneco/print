@@ -25,6 +25,7 @@ module Print.Server {
 		private serverConfig: ServerConfiguration;
 		constructor(buildFolder: string, configPath: string) {
 			var configFile = configPath + 'config.json';
+			this.clientRoot = configPath + this.clientRoot;
 			this.serverConfig = ServerConfiguration.getServerConfig(configFile);
 			this.jobQueueHandler = new Childprocess.JobQueueHandler();
 			this.baseUrl = this.serverConfig.getBaseUrl() + ":" + this.serverConfig.getServerPort().toString();
