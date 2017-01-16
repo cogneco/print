@@ -20,8 +20,8 @@ module Print {
 			if (process.argv[2])
 				configPath= process.argv[2];
 			this.registerKeyEvents();
-			this.createBuildFolder(configPath + "/repositories");
-			this.server = new Server.LocalServer(configPath + "/repositories", configPath);
+			this.createBuildFolder(configPath + "repositories");
+			this.server = new Server.LocalServer(configPath + "repositories", configPath);
 			this.server.start();
 		}
 		registerKeyEvents() {
