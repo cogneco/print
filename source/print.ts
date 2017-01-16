@@ -15,12 +15,12 @@ console["log"] = function() {
 module Print {
 	export class Program {
 		private server: Server.LocalServer
-		constructor(buildFolder: string) {
+		constructor() {
 			var configPath = "";
 			if (process.argv[2])
 				configPath= process.argv[2];
 			this.registerKeyEvents();
-			this.createBuildFolder(buildFolder);
+			this.createBuildFolder(configPath + "/repositories");
 			this.server = new Server.LocalServer(buildFolder, configPath);
 			this.server.start();
 		}
@@ -44,5 +44,5 @@ module Print {
 	}
 	
 }
-var path =  process.env['HOME'] + "/repositories";
+//var path =  process.env['HOME'] + "/repositories";
 var program = new Print.Program(path);
