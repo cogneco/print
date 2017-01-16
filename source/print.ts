@@ -21,7 +21,7 @@ module Print {
 				configPath= process.argv[2];
 			this.registerKeyEvents();
 			this.createBuildFolder(configPath + "/repositories");
-			this.server = new Server.LocalServer(buildFolder, configPath);
+			this.server = new Server.LocalServer(configPath + "/repositories", configPath);
 			this.server.start();
 		}
 		registerKeyEvents() {
