@@ -76,6 +76,8 @@ module Print.Childprocess {
 
 			var createBinaryFolderJob = new Job("Create folders for archive", "mkdir", ['-p', 'binaries'],this.folderPath, true);
 			this.jobQueue.addJob(createBinaryFolderJob);
+                        var echoarg = 'echo ' + this.pullRequestNumber +  ' > pullrequest'
+                        this.jobQueue.addJob(new Job("Create PR-file", 'sh', ['-c', echoarg], primaryRepositoryFolderPath, false));
                         if (this.noTest == false) {
                                 this.actions.forEach(action => { this.jobQueue.addJob(Taskmaster.createJob(action, primaryRepositoryFolderPath)); });
                                 //this.jobQueueHandler.addJobQueue(this.jobQueue)
