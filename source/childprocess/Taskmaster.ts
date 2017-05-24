@@ -89,7 +89,7 @@ module Print.Childprocess {
             var args: string[] = [];
             var path: string = repositoryPath;
             if (action.args)
-                args = action.args.replace("~", process.env["HOME"]).split(",");
+                args = action.args.replace(/~/g, process.env["HOME"]).split(",");
             if (action.path)
                 path += "/" + action.path;
             var fallback: Job;
